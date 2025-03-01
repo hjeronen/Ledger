@@ -2,7 +2,9 @@
 
 A World of Warcraft Classic AddOn for tracking player character's Auction House sales.
 
-Still very much work in progress, use on your own peril.
+I have previous experience in using Java, Python and JavaScript, but I have never used Lua before. I created this simply as a hobby project, I will not guarantee that it will work properly.
+
+Ledger is still very much work in progress, use on your own peril.
 
 
 ## Installing
