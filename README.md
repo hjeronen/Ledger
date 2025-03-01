@@ -20,7 +20,7 @@ When starting the game, open the AddOns window and make sure Ledger is checked.
 
 ## How to use
 
-Upon login, you should see a message in your chat window stating that Ledger has been initialized.
+Upon login, you should see a message in your chat window stating that Ledger has been initialized. When starting the add on for the first time, there's also a notification about missing data - ignore that.
 
 <img src="https://github.com/user-attachments/assets/8da4596b-d226-435f-a711-0dd266060052" alt="LedgerStartup" width="300">
 
