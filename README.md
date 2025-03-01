@@ -22,6 +22,8 @@ Upon login, you should see a message in your chat window stating that Ledger has
 
 Open Ledger by typing /ledger to console - or it might be more convenient to create a macro for this.
 
+![LedgerIcon](https://github.com/user-attachments/assets/065465f0-2c36-49f3-b317-999a7f9f1863)
+
 ## Key Features
 
 Nothing fancy - Ledger will simply display data on the items you have sold/tried to sell in Auction House.
