@@ -281,7 +281,7 @@ end
 
 
 local function SearchPage(searchPage)
-    searchPage:SetPoint("TOPLEFT", itemsPage:GetParent(), "TOPLEFT", 0, 0)
+    searchPage:SetPoint("TOPLEFT", searchPage:GetParent(), "TOPLEFT", 0, 0)
     searchPage:SetSize(WINDOW_WIDTH, WINDOW_HEIGHT)
 
     CreatePageHeader(searchPage, "COMING SOON: ITEM SEARCH!")
@@ -314,10 +314,11 @@ function InitializeLedgerFrame()
     local BgFrame = CreateFrame("Frame", nil, LedgerFrame, "BackdropTemplate")
     BgFrame:SetSize(WINDOW_WIDTH - 17, WINDOW_HEIGHT - 30)
     BgFrame:SetPoint("CENTER", LedgerFrame, "CENTER", 0, -10)
+    
     local bg = BgFrame:CreateTexture(nil, "BACKGROUND")
     bg:SetTexture("Interface\\Spellbook\\Spellbook-Page-1")
-    bg:SetAllPoints(LedgerFrame)
-    bg:SetTexCoord(0.05, 0.81, -0.03, 450/512)
+    bg:SetAllPoints(BgFrame)
+    bg:SetTexCoord(0.06, 0.81, 0, 450/512)
 
     BgFrame:SetClipsChildren(true)
 
@@ -361,6 +362,7 @@ function InitializeLedgerFrame()
     local indexPage, itemsPage, searchPage = SetTabs(3, "Index", "Items", "Search") -- returns content pages
     IndexPageContent(indexPage)
     ItemsPageContent(itemsPage)
+    SearchPage(searchPage)
     LedgerFrame.indexPage = indexPage
     LedgerFrame.itemsPage = itemsPage
     LedgerFrame.searchPage = searchPage
@@ -388,6 +390,9 @@ function InitializeLedgerFrame()
     LedgerFrame:SetScript("OnKeyDown", function(self, key)
         if key == "ESCAPE" then
             self:Hide()
+            self:SetPropagateKeyboardInput(false)
+        else
+            self:SetPropagateKeyboardInput(true)
         end
     end)
     

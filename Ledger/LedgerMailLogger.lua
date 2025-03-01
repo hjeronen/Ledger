@@ -2,7 +2,7 @@
 -- MAIL LOGGER
 ---------------------------------------------
 
-local MailLogger = CreateFrame("Frame")
+local MailLogger = CreateFrame("Frame", UIParent)
 
 --[[
     Mailbox content is kept in state that is updated on event MAIL_INOBX_UPDATE.

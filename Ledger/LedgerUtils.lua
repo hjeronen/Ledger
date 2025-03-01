@@ -13,7 +13,7 @@ function SuccessCount()
     local items = LedgerData.items or {}
 
     if IsEmptyTable(items) then
-        print("Cannot count successful auctions, table was empty")
+        return count
     end
 
     for i, item in pairs(items) do
