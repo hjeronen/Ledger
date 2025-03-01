@@ -4,6 +4,7 @@ A World of Warcraft Classic AddOn for tracking player character's Auction House 
 
 Still very much work in progress, use on your own peril.
 
+
 ## Installing
 
 Download Ledger as .zip and unpack somewhere. Copy Ledger directory to your WoW AddOns directory (/World of Warcraft/_classic_era_/Interface/AddOns/).
@@ -13,6 +14,7 @@ Download Ledger as .zip and unpack somewhere. Copy Ledger directory to your WoW 
 When starting the game, open the AddOns window and make sure Ledger is checked.
 
 <img src="https://github.com/user-attachments/assets/6cb88dbc-5d90-42b2-9b4b-99cbe964d746" alt="AddOnList" width="300">
+
 
 ## How to use
 
@@ -24,6 +26,7 @@ Open Ledger by typing /ledger to console - or it might be more convenient to cre
 
 ![LedgerIcon](https://github.com/user-attachments/assets/065465f0-2c36-49f3-b317-999a7f9f1863)
 
+
 ## Key Features
 
 Nothing fancy - Ledger will simply display data on the items you have sold/tried to sell in Auction House.
@@ -33,13 +36,17 @@ Nothing fancy - Ledger will simply display data on the items you have sold/tried
 
 When the player collects mail from mailbox, data is recorded to Ledger (item name, count, money, highest/lowest unit price). Only tracks mail where the sender is Auction House.
 
-<img src="https://github.com/user-attachments/assets/34105173-6ca8-4b1d-9ddb-80ac3e2aab2b" alt="LedgerStartup" width="300">
+<img src="https://github.com/user-attachments/assets/34105173-6ca8-4b1d-9ddb-80ac3e2aab2b" alt="LedgerStartup" width="300"><img src="https://github.com/user-attachments/assets/3791445a-70b9-42d2-96fc-ab205982f14e" alt="LedgerStartup" width="300">
+
 
 ## Planned Improvements
 - [ ] Item search.
 - [ ] Use MAIL_SHOW events for tracking? Might be more reliable.
 - [ ] Settings for setting fonts etc.
 - [ ] Other improvements to the look and code, e.g. ScrollFrame does not function properly (Items page text starts too high, and streatches too low).
+
+<img src="https://github.com/user-attachments/assets/0c76869b-beda-4efc-b52b-1afcb9d77712" alt="LedgerStartup" width="300">
+
 
 ## Bugs
 - [ ] At some point, item data was recorded twice - will keep monitoring if this was a bug, or if I just messed up cleaning the database.
