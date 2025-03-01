@@ -1,0 +1,13 @@
+## Interface: 40401
+## Title: Ledger
+## Version: 0.0.1
+## Author: hellurei
+## DefaultState: enabled
+## SavedVariablesPerCharacter: LedgerData
+
+LedgerCore.lua
+LedgerMailLogger.lua
+LedgerUtils.lua
+LedgerFrame.lua
+LedgerStartup.lua
+LedgerUIScripts.lua
