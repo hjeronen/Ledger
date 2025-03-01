@@ -51,6 +51,7 @@ When the player collects mail from mailbox, data is recorded to Ledger (item nam
 
 
 ## Bugs
-- [ ] At some point, item data was recorded twice - will keep monitoring if this was a bug, or if I just messed up cleaning the database.
+- [ ] At some point, item data was recorded twice (as you can see in the picture) - will keep monitoring if this was a bug, or if I just messed up cleaning the database.
+- [ ] Lowest unit price is not recorded/updated properly.
 - [x] Items page data updated only on reload - FIXED.
 - [x] Duplicates in the items list - FIXED
