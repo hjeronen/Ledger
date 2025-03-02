@@ -9,7 +9,7 @@ Ledger is still very much work in progress, use at your own peril.
 
 ## Installing
 
-Download Ledger as .zip and unpack somewhere. Copy Ledger directory to your WoW AddOns directory (/World of Warcraft/_classic_era_/Interface/AddOns/).
+Download this Ledger repository (or just the Ledger directory) as .zip and unpack somewhere. Copy Ledger directory (the one that contains Ledger.toc at the root) to your WoW AddOns directory (/World of Warcraft/\_classic_era_/Interface/AddOns/).
 
 **DISCLAIMER:** I have only tested this in WoW Classic (Anniversary Realms, Alliance), it might go BOOM in Retail.
 
