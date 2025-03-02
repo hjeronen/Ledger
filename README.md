@@ -4,7 +4,7 @@ A World of Warcraft Classic AddOn for tracking player character's Auction House 
 
 I have previous experience in using Java, Python and JavaScript, but I have never used Lua before. I created this simply as a hobby project, I will not guarantee that it will work properly (from section Bugs, you can see exactly how it does not work properly).
 
-Ledger is still very much work in progress, use on your own peril.
+Ledger is still very much work in progress, use at your own peril.
 
 
 ## Installing
@@ -46,13 +46,14 @@ When the player collects mail from mailbox, data is recorded to Ledger (item nam
 - [ ] Use MAIL_SHOW events for tracking? Might be more reliable.
 - [ ] Settings for setting fonts etc.
 - [ ] Other improvements to the look and code, e.g. ScrollFrame does not function properly (Items page text starts too high, and stretches too low).
+- [ ] Separate class for handling database interactions.
 
 <img src="https://github.com/user-attachments/assets/0c76869b-beda-4efc-b52b-1afcb9d77712" alt="LedgerStartup" width="300">
 
 
 ## Bugs
-- [ ] At some point, item data was recorded twice (as you can see in the picture) - will keep monitoring if this was a bug, or if I just messed up cleaning the database.
-- [ ] Lowest unit price is not recorded/updated properly.
-- [ ] Player cannot move when Ledger window is open.
+- [ ] At some point, item data was recorded twice (as you can see in the picture) - I will keep monitoring if this was a bug, or if I just messed up cleaning the database.
+- [x] Lowest unit price is not recorded/updated properly. - PROBABLY FIXED
+- [x] Player cannot move when Ledger window is open. - FIXED
 - [x] Items page data updated only on reload - FIXED.
 - [x] Duplicates in the items list - FIXED
