@@ -24,12 +24,13 @@ local MailLogger = CreateFrame("Frame", UIParent)
 function UseMailLogger()
     LedgerPrint("Using mail logger")
     MailLogger.items = {}
-    MailLogger.initialMailCount = 0
+    MailLogger.mailCount = 0
 
     MailLogger:RegisterEvent("MAIL_INBOX_UPDATE") -- Might be better to use MAIL_SHOW, and record data when mail is opened
 
     MailLogger:SetScript("OnEvent", function(self, event, ...)
         if event == "MAIL_INBOX_UPDATE" then
+            -- Delay mail logging if MAIL_INBOX_UPDATE fires repeatedly, e.g. in case of "Open all"
             if MailLogger.mailUpdateTimer then
                 MailLogger.mailUpdateTimer:Cancel()
             end
@@ -52,15 +53,11 @@ function MailLogger:RecordMail()
         local _packageIcon, _stationeryIcon, sender, subject, money = GetInboxHeaderInfo(i)
         if sender and string.find(sender, "Auction House") then
             if (subject and string.find(subject, "Auction successful")) then
-                local count = tonumber(string.match(subject, "%((%d+)%)"))
+                local count = tonumber(string.match(subject, "%((%d+)%)")) or 1 -- if no count, then there was only 1 unit
                 local itemName = string.match(subject, "Auction successful: (.+) ?%(") or string.match(subject, "Auction successful: (.+)")
 
                 if itemName then
                     itemName = itemName:match("^%s*(.-)%s*$") -- remove whitespace
-                end
-
-                if itemName and not count then
-                    count = 1
                 end
 
                 local identifier = MailLogger:GetTableKey({
@@ -72,7 +69,7 @@ function MailLogger:RecordMail()
                 currentItems[listIndex] = {
                     index = listIndex,
                     identifier = identifier,
-                    name = itemName,
+                    name = itemName or "unknown",
                     count = count,
                     money = money,
                     subject = subject,
@@ -81,10 +78,10 @@ function MailLogger:RecordMail()
                 listIndex = listIndex + 1
 
             elseif (subject and string.find(subject, "Auction expired")) then
-                local name, _itemId, _itemTexture, count = GetInboxItem(i, 1)
-                local itemName = name -- leave nil to correctly detect collected items! See CompareLoggerData()
-                if name then
-                    itemName = name:match("^%s*(.-)%s*$")
+                local count = tonumber(string.match(subject, "%((%d+)%)")) or 1
+                local itemName = string.match(subject, "Auction expired: (.+) ?%(") or string.match(subject, "Auction expired: (.+)")
+                if itemName then
+                    itemName = itemName:match("^%s*(.-)%s*$")
                 end
 
                 local identifier = MailLogger:GetTableKey({
@@ -96,7 +93,7 @@ function MailLogger:RecordMail()
                 currentItems[listIndex] = {
                     index = listIndex,
                     identifier = identifier,
-                    name = itemName,
+                    name = itemName or "unknown",
                     count = count,
                     money = 0,
                     subject = subject,
@@ -120,19 +117,20 @@ function MailLogger:RecordMail()
     -- and do not update Ledger.
     if IsEmptyTable(MailLogger.items) then
         MailLogger.items = currentItems
-        MailLogger.initialMailCount = numMail
+        MailLogger.mailCount = numMail
         return
     end
 
     -- All mail might not load at once, so keep updating MailLogger.items
-    if numMail > MailLogger.initialMailCount then
+    if numMail > MailLogger.mailCount then
         MailLogger.items = currentItems
-        MailLogger.initialMailCount = numMail
+        MailLogger.mailCount = numMail
         return
     end
 
     MailLogger:UpdateLedgerData(MailLogger:CompareLoggerData(currentItems))
     MailLogger.items = currentItems
+    MailLogger.mailCount = numMail
 end
 
 function MailLogger:GetTableKey(item)
@@ -146,13 +144,14 @@ function MailLogger:CompareLoggerData(currentItems)
     local currentItemsIndex = 1
 
     for i, item in ipairs(MailLogger.items) do
+
         -- Hack: when money or item is collected from mail, the mail is not immediately deleted,
         -- but stays in the mailbox as empty. Then the compare loop would interpret the next item
         -- as removed from mailbox because it is different from what is in current index.
         -- If some item.name is nil, cannot reliably compare lists.
-        if not item.name then
-            break
-        end
+        -- if not item.name then
+            -- break
+        -- end
 
         local currentItem = currentItems[currentItemsIndex] or {}
         

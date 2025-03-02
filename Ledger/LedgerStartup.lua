@@ -4,12 +4,11 @@ local function OnStartup(self, event, ...)
 		LedgerPrint("Hello Azeroth! Starting Ledger.")
 		
 		if not LedgerData then
-			print("Ledger data was not found!")
+			LedgerPrint("Initializing database.")
 			LedgerData = {}
 		end
 		
 		if not LedgerData.items then
-			print("LedgerData.items was not found!")
 			LedgerData.items = {}
 		end
 
